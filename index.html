@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#f6f8f0" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="PawPlan" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <title>PawPlan</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="brand"><span class="paw">●</span><span>PawPlan</span></div>
+      <button class="language" id="languageButton" aria-label="Change language">EN</button>
+    </header>
+
+    <div data-screen="home"><section class="pet-card" id="petCard">
+      <div class="pet-avatar" id="petAvatar">🐶</div>
+      <div><p class="eyebrow" data-i18n="yourPet">YOUR PET</p><h1 id="petName">Milo</h1><p id="petMeta">Golden Retriever · 4 years</p></div>
+      <button class="edit-pet" id="editPet" aria-label="Edit pet">✎</button>
+    </section>
+
+    <section class="overview">
+      <div><p class="eyebrow" data-i18n="nextUp">NEXT UP</p><h2 id="nextTitle">Worm treatment</h2><p id="nextDate">in 6 days · 17 Aug</p></div>
+      <div class="calendar"><b id="nextDay">17</b><span id="nextMonth">AUG</span></div>
+    </section>
+
+    <section class="section-heading"><div><p class="eyebrow" data-i18n="upcoming">UPCOMING</p><h2 data-i18n="healthCare">Health care</h2></div><button class="text-button" id="viewHistory" data-i18n="notes">Notes</button></section>
+    <section class="task-list" id="taskList"></section>
+    <button class="add-button" id="openAdd"><span>＋</span><span data-i18n="addReminder">Add reminder</span></button></div>
+    <section data-screen="records" hidden><p class="eyebrow" data-i18n="records">RECORDS</p><h1 data-i18n="weight">Weight</h1><div class="weight-card"><b id="latestWeight">—</b><span data-i18n="latestWeight">Latest entry</span></div><div id="weightList" class="mini-list"></div><button class="add-button" id="openWeight"><span>＋</span><span data-i18n="addWeight">Add weight</span></button><button class="outline-button" id="openNotes" data-i18n="notes">Notes</button></section>
+    <section data-screen="care" hidden><p class="eyebrow" data-i18n="health">HEALTH</p><h1 data-i18n="careInfo">Care information</h1><article class="info-card"><h3 data-i18n="vet">Veterinarian</h3><p id="vetDisplay" data-i18n="noVet">No veterinarian saved</p><button class="text-button" id="openVet" data-i18n="edit">Edit</button></article><article class="info-card"><h3 data-i18n="documents">Documents & photos</h3><p id="documentCount">0 documents</p><input id="documentInput" type="file" accept="image/*,.pdf" multiple /><div id="documentList" class="mini-list"></div></article><article class="info-card"><h3 data-i18n="reminderLead">Reminder notice</h3><select id="leadSelect"><option value="1">1 day before</option><option value="3">3 days before</option><option value="7">7 days before</option><option value="14">14 days before</option></select></article></section>
+    <section data-screen="pets" hidden><p class="eyebrow" data-i18n="pets">PETS</p><h1 data-i18n="myPets">My pets</h1><div id="petsList" class="pets-list"></div><button class="add-button" id="addPet"><span>＋</span><span data-i18n="addPet">Add pet</span></button></section>
+    <nav><button class="active" data-tab="home">⌂<span data-i18n="home">Home</span></button><button data-tab="records">▥<span data-i18n="records">Records</span></button><button data-tab="care">♡<span data-i18n="health">Health</span></button><button data-tab="pets">●<span data-i18n="pets">Pets</span></button></nav>
+  </main>
+
+  <dialog id="taskDialog"><form method="dialog" id="taskForm">
+    <div class="modal-title"><h2 data-i18n="newReminder">New reminder</h2><button value="cancel" class="close">×</button></div>
+    <label><span data-i18n="type">Type</span><select id="taskType"><option value="worm">Worm treatment</option><option value="vaccine">Vaccination</option><option value="medicine">Medicine</option><option value="checkup">Vet check-up</option><option value="grooming">Grooming</option></select></label>
+    <label><span data-i18n="name">Name / note</span><input id="taskName" required maxlength="60" placeholder="e.g. Drontal" /></label>
+    <label><span data-i18n="date">Date</span><input id="taskDate" type="date" required /></label>
+    <label><span data-i18n="repeat">Repeat</span><select id="taskRepeat">
+      <option value="0">Does not repeat</option>
+      <option value="1">Every month</option><option value="2">Every 2 months</option><option value="3">Every 3 months</option><option value="4">Every 4 months</option><option value="5">Every 5 months</option><option value="6">Every 6 months</option><option value="7">Every 7 months</option><option value="8">Every 8 months</option><option value="9">Every 9 months</option><option value="10">Every 10 months</option><option value="11">Every 11 months</option>
+      <option value="12">Every year</option><option value="24">Every 2 years</option><option value="36">Every 3 years</option>
+    </select></label>
+    <button class="save" value="default" data-i18n="saveReminder">Save reminder</button>
+  </form></dialog>
+  <dialog id="weightDialog"><form method="dialog" id="weightForm"><div class="modal-title"><h2 data-i18n="addWeight">Add weight</h2><button value="cancel" class="close">×</button></div><label><span data-i18n="date">Date</span><input id="weightDate" type="date" required /></label><label><span data-i18n="weight">Weight (kg)</span><input id="weightInput" type="number" min="0.1" max="300" step="0.1" required /></label><button class="save" value="default" data-i18n="save">Save</button></form></dialog>
+  <dialog id="vetDialog"><form method="dialog" id="vetForm"><div class="modal-title"><h2 data-i18n="vet">Veterinarian</h2><button value="cancel" class="close">×</button></div><label><span data-i18n="clinic">Clinic name</span><input id="vetClinic" maxlength="80" /></label><label><span data-i18n="phone">Phone</span><input id="vetPhone" type="tel" /></label><label><span data-i18n="address">Address</span><textarea id="vetAddress" maxlength="200"></textarea></label><label><span data-i18n="emergency">Emergency contact</span><input id="vetEmergency" type="tel" /></label><button class="save" value="default" data-i18n="save">Save</button></form></dialog>
+
+  <dialog id="petDialog"><form method="dialog" id="petForm">
+    <div class="modal-title"><h2 data-i18n="editPet">Edit pet</h2><button value="cancel" class="close">×</button></div>
+    <label><span data-i18n="petName">Pet name</span><input id="petNameInput" required maxlength="30" /></label>
+    <label><span data-i18n="breed">Breed</span><input id="breedInput" maxlength="40" /></label>
+    <label><span data-i18n="birthday">Birthday</span><input id="birthdayInput" type="date" /></label>
+    <label><span data-i18n="sex">Sex</span><select id="sexInput"><option value="">—</option><option value="female">Female</option><option value="male">Male</option></select></label>
+    <label><span data-i18n="photo">Photo</span><input id="photoInput" type="file" accept="image/*" /></label>
+    <button class="save" value="default" data-i18n="save">Save</button>
+  </form></dialog>
+  <dialog id="notesDialog"><form method="dialog" id="noteForm">
+    <div class="modal-title"><h2 data-i18n="notes">Notes</h2><button value="cancel" class="close">×</button></div>
+    <div id="notesList" class="notes-list"></div>
+    <p class="add-note-title" data-i18n="addNote">Add a note</p>
+    <label><span data-i18n="date">Date</span><input id="noteDate" type="date" required /></label>
+    <label><span data-i18n="note">Note</span><textarea id="noteText" required maxlength="500" placeholder="e.g. Neutered at City Vet"></textarea></label>
+    <button class="save" value="default" data-i18n="saveNote">Save note</button>
+  </form></dialog>
+  <script src="register.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
