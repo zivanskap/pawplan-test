@@ -40,7 +40,7 @@
   </main>
 
   <dialog id="taskDialog"><form method="dialog" id="taskForm">
-    <div class="modal-title"><h2 data-i18n="newReminder">New reminder</h2><button value="cancel" class="close">×</button></div>
+    <div class="modal-title"><h2 data-i18n="newReminder">New reminder</h2><button type="button" class="close" data-close aria-label="Close">×</button></div>
     <label><span data-i18n="type">Type</span><select id="taskType"><option value="worm">Worm treatment</option><option value="vaccine">Vaccination</option><option value="medicine">Medicine</option><option value="checkup">Vet check-up</option><option value="grooming">Grooming</option></select></label>
     <label><span data-i18n="name">Name / note</span><input id="taskName" required maxlength="60" placeholder="e.g. Drontal" /></label>
     <label><span data-i18n="date">Date</span><input id="taskDate" type="date" required /></label>
@@ -49,27 +49,27 @@
       <option value="1">Every month</option><option value="2">Every 2 months</option><option value="3">Every 3 months</option><option value="4">Every 4 months</option><option value="5">Every 5 months</option><option value="6">Every 6 months</option><option value="7">Every 7 months</option><option value="8">Every 8 months</option><option value="9">Every 9 months</option><option value="10">Every 10 months</option><option value="11">Every 11 months</option>
       <option value="12">Every year</option><option value="24">Every 2 years</option><option value="36">Every 3 years</option>
     </select></label>
-    <button class="save" value="default" data-i18n="saveReminder">Save reminder</button>
+    <div class="modal-actions"><button type="button" class="cancel" data-close data-i18n="cancel">Cancel</button><button class="save" value="default" data-i18n="saveReminder">Save reminder</button></div>
   </form></dialog>
-  <dialog id="weightDialog"><form method="dialog" id="weightForm"><div class="modal-title"><h2 data-i18n="addWeight">Add weight</h2><button value="cancel" class="close">×</button></div><label><span data-i18n="date">Date</span><input id="weightDate" type="date" required /></label><label><span data-i18n="weight">Weight (kg)</span><input id="weightInput" type="number" min="0.1" max="300" step="0.1" required /></label><button class="save" value="default" data-i18n="save">Save</button></form></dialog>
-  <dialog id="vetDialog"><form method="dialog" id="vetForm"><div class="modal-title"><h2 data-i18n="vet">Veterinarian</h2><button value="cancel" class="close">×</button></div><label><span data-i18n="clinic">Clinic name</span><input id="vetClinic" maxlength="80" /></label><label><span data-i18n="phone">Phone</span><input id="vetPhone" type="tel" /></label><label><span data-i18n="address">Address</span><textarea id="vetAddress" maxlength="200"></textarea></label><label><span data-i18n="emergency">Emergency contact</span><input id="vetEmergency" type="tel" /></label><button class="save" value="default" data-i18n="save">Save</button></form></dialog>
+  <dialog id="weightDialog"><form method="dialog" id="weightForm"><div class="modal-title"><h2 data-i18n="addWeight">Add weight</h2><button type="button" class="close" data-close aria-label="Close">×</button></div><label><span data-i18n="date">Date</span><input id="weightDate" type="date" required /></label><label><span data-i18n="weight">Weight (kg)</span><input id="weightInput" type="number" min="0.1" max="300" step="0.1" required /></label><div class="modal-actions"><button type="button" class="cancel" data-close data-i18n="cancel">Cancel</button><button class="save" value="default" data-i18n="save">Save</button></div></form></dialog>
+  <dialog id="vetDialog"><form method="dialog" id="vetForm"><div class="modal-title"><h2 data-i18n="vet">Veterinarian</h2><button type="button" class="close" data-close aria-label="Close">×</button></div><label><span data-i18n="clinic">Clinic name</span><input id="vetClinic" maxlength="80" /></label><label><span data-i18n="phone">Phone</span><input id="vetPhone" type="tel" /></label><label><span data-i18n="address">Address</span><textarea id="vetAddress" maxlength="200"></textarea></label><label><span data-i18n="emergency">Emergency contact</span><input id="vetEmergency" type="tel" /></label><div class="modal-actions"><button type="button" class="cancel" data-close data-i18n="cancel">Cancel</button><button class="save" value="default" data-i18n="save">Save</button></div></form></dialog>
 
   <dialog id="petDialog"><form method="dialog" id="petForm">
-    <div class="modal-title"><h2 data-i18n="editPet">Edit pet</h2><button value="cancel" class="close">×</button></div>
+    <div class="modal-title"><h2 data-i18n="editPet">Edit pet</h2><button type="button" class="close" data-close aria-label="Close">×</button></div>
     <label><span data-i18n="petName">Pet name</span><input id="petNameInput" required maxlength="30" /></label>
     <label><span data-i18n="breed">Breed</span><input id="breedInput" maxlength="40" /></label>
     <label><span data-i18n="birthday">Birthday</span><input id="birthdayInput" type="date" /></label>
     <label><span data-i18n="sex">Sex</span><select id="sexInput"><option value="">—</option><option value="female">Female</option><option value="male">Male</option></select></label>
     <label><span data-i18n="photo">Photo</span><input id="photoInput" type="file" accept="image/*" /></label>
-    <button class="save" value="default" data-i18n="save">Save</button>
+    <div class="modal-actions"><button type="button" class="cancel" data-close data-i18n="cancel">Cancel</button><button class="save" value="default" data-i18n="save">Save</button></div>
   </form></dialog>
   <dialog id="notesDialog"><form method="dialog" id="noteForm">
-    <div class="modal-title"><h2 data-i18n="notes">Notes</h2><button value="cancel" class="close">×</button></div>
+    <div class="modal-title"><h2 data-i18n="notes">Notes</h2><button type="button" class="close" data-close aria-label="Close">×</button></div>
     <div id="notesList" class="notes-list"></div>
     <p class="add-note-title" data-i18n="addNote">Add a note</p>
     <label><span data-i18n="date">Date</span><input id="noteDate" type="date" required /></label>
     <label><span data-i18n="note">Note</span><textarea id="noteText" required maxlength="500" placeholder="e.g. Neutered at City Vet"></textarea></label>
-    <button class="save" value="default" data-i18n="saveNote">Save note</button>
+    <div class="modal-actions"><button type="button" class="cancel" data-close data-i18n="cancel">Cancel</button><button class="save" value="default" data-i18n="saveNote">Save note</button></div>
   </form></dialog>
   <script src="register.js"></script>
   <script src="app.js"></script>
